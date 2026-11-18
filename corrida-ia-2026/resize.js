@@ -1,0 +1,2 @@
+/* Emits only public card ID and rendered height; never sends user data. */
+(()=>{const main=document.querySelector('main');if(!main)return;const report=()=>parent.postMessage({type:'exame-product-height',id:main.dataset.cardId,height:Math.ceil(main.getBoundingClientRect().height)},'*');new ResizeObserver(report).observe(main);window.addEventListener('load',report);window.addEventListener('message',event=>{if(event.source===parent&&event.data?.type==='exame-product-measure')report();});report();})();
